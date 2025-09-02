@@ -1,0 +1,18 @@
+*** Unit Test Error Report ***
+
+ PASS  1-JavaScript/Week3/assignment/ex1-doubleEvenNumbers.test.js
+  js-wk3-ex1-doubleEvenNumbers
+    ✅ doubleEvenNumbers should take the even numbers and double them (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.411 s, estimated 1 s
+Ran all test suites matching /\/Users\/Alaa\/Desktop\/JavaScript-Cohort54\/1-JavaScript\/Week3\/assignment\/ex1-doubleEvenNumbers.test.js/i.
+No linting errors detected.
+
+
+*** Spell Checker Report ***
+
+1-JavaScript/Week3/assignment/ex1-doubleEvenNumbers.test.js:15:13 - Unknown word (Mumbers)
+1-JavaScript/Week3/assignment/ex1-doubleEvenNumbers.test.js:25:14 - Unknown word (Mumbers)
