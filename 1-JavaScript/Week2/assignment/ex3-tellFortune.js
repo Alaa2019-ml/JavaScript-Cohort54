@@ -1,5 +1,5 @@
-function selectRandomly(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+function selectRandomly(choices) {
+  return choices[Math.floor(Math.random() * choices.length)];
 }
 
 export function tellFortune(childrenArr, partnersArr, locationsArr, jobsArr) {

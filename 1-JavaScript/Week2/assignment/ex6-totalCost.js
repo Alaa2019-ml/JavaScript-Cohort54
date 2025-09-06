@@ -7,11 +7,14 @@ const cartForParty = {
 };
 
 function calculateTotalPrice(obj) {
-  let sum = 0;
-  for (const [_, value] of Object.entries(obj)) {
-    sum += value;
-  }
-  return Number(sum.toFixed(2));
+  // let sum = 0;
+  // for (const [_, value] of Object.entries(obj)) {
+  //   sum += value;
+  // }
+
+  // return Number(sum.toFixed(2));
+  const total = Object.values(obj).reduce((total, item) => total + item);
+  return Number(total.toFixed(2));
 }
 
 function test1() {

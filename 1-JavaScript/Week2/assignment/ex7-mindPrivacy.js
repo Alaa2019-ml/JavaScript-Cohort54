@@ -16,10 +16,13 @@ const employeeRecords = [
 ];
 
 function filterPrivateData(employeesRecord) {
-  const nonPrivateData = [];
-  for (let { name, occupation, email } of employeesRecord) {
-    nonPrivateData.push({ name, occupation, email });
-  }
+  // const nonPrivateData = [];
+  // for (let { name, occupation, email } of employeesRecord) {
+  //   nonPrivateData.push({ name, occupation, email });
+  // }
+  const nonPrivateData = employeesRecord.map(({ name, occupation, email }) => {
+    return { name, occupation, email };
+  });
   return nonPrivateData;
 }
 

@@ -1,13 +1,12 @@
 const shoppingCart = ['bananas', 'milk'];
 
 function addToShoppingCart(item) {
-  if (!item) {
-    return `You bought ${shoppingCart.join(', ')}!`;
-  }
-  shoppingCart.length > 2 && shoppingCart.splice(0, 1);
-
   shoppingCart.push(item);
-  return `You bought ${shoppingCart.join(', ')}!`;
+  if (shoppingCart.length > 3) {
+    shoppingCart.shift();
+  }
+  const shoppingCartItems = shoppingCart.join(', ');
+  return `You bought ${shoppingCartItems}!`;
 }
 
 function test1() {

@@ -1,10 +1,10 @@
 function addToShoppingCart([...shoppingCart], item) {
-  if (!item) {
-    return shoppingCart;
-  }
-  shoppingCart.length > 2 ? shoppingCart.splice(0, 1) : shoppingCart;
   shoppingCart.push(item);
-  return shoppingCart;
+  if (shoppingCart.length > 3) {
+    shoppingCart.shift();
+  }
+  const shoppingCartItems = shoppingCart.join(', ');
+  return `You bought ${shoppingCartItems}!`;
 }
 
 function test1() {
