@@ -8,4 +8,10 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
 3. Look in the css file!
 ------------------------------------------------------------------------------*/
 
-// TODO add your JavaScript code here.
+const ul = document.querySelector('ul').children;
+ul[0].textContent = 'Alooy';
+ul[1].textContent = 'Burgers';
+ul[2].textContent = 'Dongen';
+
+const arr = Array.from(ul);
+arr.forEach((ele) => (ele.className = 'list-item'));
