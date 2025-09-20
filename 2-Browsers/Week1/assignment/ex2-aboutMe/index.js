@@ -9,9 +9,13 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
 ------------------------------------------------------------------------------*/
 
 const ul = document.querySelector('ul').children;
-ul[0].textContent = 'Alooy';
-ul[1].textContent = 'Burgers';
-ul[2].textContent = 'Dongen';
+const nickname = document.getElementById('nickname');
+const favFood = document.getElementById('fav-food');
+const hometown = document.getElementById('hometown');
+
+nickname.textContent = 'Alooy';
+favFood.textContent = 'Burgers';
+hometown.textContent = 'Dongen';
 
 const arr = Array.from(ul);
 arr.forEach((ele) => (ele.className = 'list-item'));

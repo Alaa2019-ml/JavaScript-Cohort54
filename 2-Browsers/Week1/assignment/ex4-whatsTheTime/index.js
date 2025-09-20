@@ -6,19 +6,21 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
   second). Use `setInterval()` to make sure the time stays current.
 2. Have the function execute when it's loading in the browser.
 ------------------------------------------------------------------------------*/
+
 function addCurrentTime() {
   const div = document.createElement('div');
   const span = document.createElement('span');
 
-  return setInterval(function () {
+  setInterval(function () {
     const time = new Date();
     const hours = String(time.getHours()).padStart(2, '0');
     const minutes = String(time.getMinutes()).padStart(2, '0');
     const seconds = String(time.getSeconds()).padStart(2, '0');
     span.textContent = `${hours}:${minutes}:${seconds}`;
-    div.appendChild(span);
-    document.body.appendChild(div);
   }, 1000);
+
+  div.appendChild(span);
+  document.body.appendChild(div);
 }
 
 window.addEventListener('load', addCurrentTime);

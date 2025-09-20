@@ -20,43 +20,34 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
 
    https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif
 -----------------------------------------------------------------------------*/
-
 const image = document.querySelector('img');
 image.style.left = '0px';
-
-const step = 10;
-const danceUrl =
-  'https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif';
 const originalUrl = image.src;
-
-let dancedThisLap = false;
-let timer = setInterval(catWalk, 5000);
+// console.log(originalUrl);
 
 function catWalk() {
-  const left = parseInt(image.style.left, 10);
-  const max = window.innerWidth - image.width;
-  const middle = Math.floor((window.innerWidth - image.width) / 2);
+  intervalId = setInterval(function () {
+    const stepToLeft = parseInt(image.style.left, 10) + 10;
+    image.style.left = `${stepToLeft}px`;
 
-  const newLeft = left + step;
-  image.style.left = newLeft + 'px';
+    //  check if it reaches the end of the screen
+    if (stepToLeft > window.outerWidth - image.width) image.style.left = '0px';
 
-  if (newLeft >= max) {
-    image.style.left = '0px';
-    dancedThisLap = false;
-    return;
-  }
-
-  if (!dancedThisLap && newLeft >= middle) {
-    dancedThisLap = true;
-    clearInterval(timer);
-    image.src = danceUrl;
-
-    setTimeout(() => {
+    //  check if it reaches the middle of the screen
+    if (stepToLeft > window.outerWidth - image.width / 2) {
+      // middle();
+      stopDancing();
       image.src = originalUrl;
-      image.style.left = middle + step + 'px';
-      timer = setInterval(catWalk, 5000);
-    }, 5000);
-  }
+    }
+  }, 50);
+}
+
+function stopDancing() {
+  setTimeout(function () {
+    clearInterval(intervalId);
+    image.src =
+      'https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif';
+  }, 5000);
 }
 
 window.addEventListener('load', catWalk);
