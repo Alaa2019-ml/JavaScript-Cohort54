@@ -27,9 +27,13 @@ exercise file.
 import { rollDie } from '../../helpers/pokerDiceRoller.js';
 
 export function rollDice() {
-  // TODO Refactor this function
   const dice = [1, 2, 3, 4, 5];
-  return rollDie(1);
+
+  return Promise.all(
+    dice.map((ele) => {
+      return rollDie(ele); // rollDie() returns a promise
+    })
+  );
 }
 
 function main() {
@@ -42,5 +46,3 @@ function main() {
 if (process.env.NODE_ENV !== 'test') {
   main();
 }
-
-// TODO Replace this comment by your explanation that was asked for in the assignment description.
