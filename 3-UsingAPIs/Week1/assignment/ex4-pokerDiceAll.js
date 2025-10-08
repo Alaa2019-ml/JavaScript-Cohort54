@@ -46,3 +46,5 @@ function main() {
 if (process.env.NODE_ENV !== 'test') {
   main();
 }
+
+// The remaining dice continue rolling because reject will only mark the promise as rejected but does not stop the execution of the code inside the function rolldie().To solve that we can use the return keyword right after reject()
