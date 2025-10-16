@@ -23,31 +23,36 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
 const image = document.querySelector('img');
 image.style.left = '0px';
 const originalUrl = image.src;
-// console.log(originalUrl);
+let dancing = false;
+
+const screenWidth = window.innerWidth - image.width;
+const middle = screenWidth / 2;
 
 function catWalk() {
-  intervalId = setInterval(function () {
+  setInterval(function () {
+    if (dancing) return;
+
     const stepToLeft = parseInt(image.style.left, 10) + 10;
     image.style.left = `${stepToLeft}px`;
 
-    //  check if it reaches the end of the screen
-    if (stepToLeft > window.outerWidth - image.width) image.style.left = '0px';
+    if (stepToLeft >= screenWidth) {
+      image.style.left = '0px';
+      return;
+    }
 
-    //  check if it reaches the middle of the screen
-    if (stepToLeft > window.outerWidth - image.width / 2) {
-      // middle();
+    if (stepToLeft >= middle && stepToLeft < middle + 10) {
       stopDancing();
-      image.src = originalUrl;
     }
   }, 50);
 }
 
 function stopDancing() {
+  dancing = true;
+  image.src =
+    'https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif';
   setTimeout(function () {
-    clearInterval(intervalId);
-    image.src =
-      'https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif';
+    image.src = originalUrl;
+    dancing = false;
   }, 5000);
 }
-
 window.addEventListener('load', catWalk);
