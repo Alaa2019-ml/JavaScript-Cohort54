@@ -17,7 +17,6 @@ function renderLaureate({ knownName, birth, death }) {
 }
 
 function renderLaureates(laureates) {
-  // console.log('laureates:', laureates);
   laureates.forEach(renderLaureate);
 }
 

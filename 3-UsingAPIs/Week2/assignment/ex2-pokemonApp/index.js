@@ -23,7 +23,7 @@ parameters and return values to pass data back and forth.
 ------------------------------------------------------------------------------*/
 async function fetchData(url) {
   const response = await fetch(url);
-  if (response.status !== 200) throw new Error('An error occured!');
+  if (!response.ok) throw new Error('An error occured!');
   const data = await response.json();
   return data;
 }
@@ -31,39 +31,43 @@ async function fetchData(url) {
 async function fetchAndPopulatePokemons(url) {
   //Create the button
   const btn = document.createElement('button');
-  btn.innerHTML = 'Show';
+  btn.textContent = 'Show';
   document.body.appendChild(btn);
 
   //Create the select
-  const data = await fetchData(url);
-  const pokemons = document.createElement('select');
-  pokemons.setAttribute('id', 'selected');
-  document.body.appendChild(pokemons);
+  try {
+    const data = await fetchData(url);
 
-  btn.addEventListener('click', () => {
-    if (pokemons.options.length === 0) {
-      data.results.forEach((element) => {
-        const pokemon = document.createElement('option');
-        pokemon.setAttribute('value', element.url);
-        const optionText = document.createTextNode(element.name);
-        pokemon.appendChild(optionText);
-        pokemons.appendChild(pokemon);
-      });
-    }
-  });
+    btn.addEventListener('click', () => {
+      const pokemons = document.createElement('select');
+      pokemons.setAttribute('id', 'selected');
+      document.body.appendChild(pokemons);
 
-  pokemons.addEventListener('change', () => {
-    fetchImage();
-  });
+      if (pokemons.options.length === 0) {
+        data.results.forEach((element) => {
+          const pokemon = document.createElement('option');
+          pokemon.setAttribute('value', element.url);
+          const optionText = document.createTextNode(element.name);
+          pokemon.appendChild(optionText);
+          pokemons.appendChild(pokemon);
+        });
+      }
+    });
 
-  return pokemons;
+    pokemons.addEventListener('change', () => {
+      fetchImage();
+    });
+
+    // return pokemons;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function fetchImage() {
   const dropdown = document.getElementById('selected');
   const pokemonUrl = dropdown.value;
   const data = await fetchData(pokemonUrl);
-  console.log('Data Pokemon: ', data);
 
   const imageUrl = data.sprites.front_default;
 
