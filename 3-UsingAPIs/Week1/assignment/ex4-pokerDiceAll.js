@@ -47,4 +47,4 @@ if (process.env.NODE_ENV !== 'test') {
   main();
 }
 
-// The remaining dice continue rolling because reject will only mark the promise as rejected but does not stop the execution of the code inside the function rolldie().To solve that we can use the return keyword right after reject()
+// The remaining dice continue rolling because reject will only mark the promise as rejected but does not stop the execution of the code inside the function rolldie().To solve that we can use the return keyword right after reject(). In addition, after rejection, the function still schedules the next roll using setTimeout, so the die keeps rolling and logging updates even though its promise has already been rejected. This happens because promises in javaScript are not cancelable by default - once async operations like setTimeout are started they continue running unless explicitely stopped. Therefore each die runs independently, even if one promise is rejected, the other dice will continue their own rolls.
